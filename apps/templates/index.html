@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <title>Totodile</title>
+</head>
+<body>
+     <div class="center">todolist da deepweb</div>
+    <div class="center">
+        <ul>
+            {% for tarefa in tarefas %}
+                <li>{{ tarefa.id }} - {{tarefa.tarefa}} 
+                    <a href="{% url 'status' tarefa.id %}">Editar tarefa</a>
+                     <a href="{% url 'apagar' tarefa.id %}">Apagar tarefa</a>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <form action="{% url 'save' %}" method="POST">
+                {% csrf_token %}
+                <input class="center" type="text" name="tarefas">
+                <button type="submit">Salvar tarefa</button>
+         </form>
+
+    </div>
+
+
+</body>
+</html>
